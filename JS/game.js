@@ -116,7 +116,7 @@ var game = (function() {
                     bricks.bricks[row][col] = {
                         // fast deep-copy
                         position: JSON.parse(JSON.stringify(position)),
-                        hp : 2
+                        hp: 2
                     };
                     position.x += step.x;
                 }
@@ -133,7 +133,7 @@ var game = (function() {
         speed: new util.Point(CONST.BALL.SPEED.X, CONST.BALL.SPEED.Y),
 
         // methods:
-        move : function() {
+        move: function() {
             ball.position.x += ball.speed.x;
             ball.position.y += ball.speed.y;
         },
@@ -143,14 +143,14 @@ var game = (function() {
         // TODO: interception of a brick and the ball
         checkBricks: function() {
             // this way indexing is not affected if we remove an element
-            for (var i = bricks.bricks.length -1; i > -1; --i) {
+            for (var i = bricks.bricks.length - 1; i > -1; --i) {
                 if ((ball.position.x < ball.size) ||
                     (ball.position.x > cvs.width - ball.size)) {
-                    ball.speed.x = -ball.speed.x;
+                    util.turn(ball.speed, 'x');
                 }
                 if ((ball.position.y < ball.size) ||
                     (ball.position.y > cvs.height - ball.size)) {
-                    ball.speed.y = -ball.speed.y;
+                    util.turn(ball.speed, 'y');
                 }
             }
         },
@@ -158,18 +158,18 @@ var game = (function() {
             if ((ball.position.x + ball.size >= paddle.position.x) &&
                 (ball.position.x + ball.size <= paddle.position.x + paddle.size.x) &&
                 (ball.position.y + ball.size >= paddle.position.y)) {
-                    ball.speed.x = -ball.speed.x;
-                    ball.speed.y = -ball.speed.y;
+                util.turn(ball.speed, 'x');
+                util.turn(ball.speed, 'y');
             }
         },
         checkWalls: function() {
             if ((ball.position.x < ball.size) ||
                 (ball.position.x > cvs.width - ball.size)) {
-                ball.speed.x = -ball.speed.x;
+                util.turn(ball.speed, 'x');
             }
             if ((ball.position.y < ball.size) ||
                 (ball.position.y > cvs.height - ball.size)) {
-                ball.speed.y = -ball.speed.y;
+                util.turn(ball.speed, 'y');
             }
         },
         check: function() {
@@ -186,7 +186,7 @@ var game = (function() {
         handler: function(e) {
             switch (e.keyCode) {
                 case CONST.KEYS.PAUSE: {
-                    priv.run = !priv.run;
+                    util.turn(priv, 'run');
                 } break;
                 default: {} break;
             }
@@ -204,14 +204,12 @@ var game = (function() {
         },
     };
 
-    function game() {
+    return function() {
         priv.init();
         paddle.init();
         bricks.init();
         setInterval(priv.logic, 10);
     };
-
-    return game;
-}());
+})();
 
 

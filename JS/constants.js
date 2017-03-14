@@ -26,6 +26,6 @@ const CONST = (function() {
             },
         }
     };
-}());
+})();
 
 
