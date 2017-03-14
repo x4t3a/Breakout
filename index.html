@@ -1,22 +1,27 @@
 
 <!doctype html>
 <html lang='en'>
-	<head>
-		<meta charset='utf-8'>
-		<title>BR34K 0UT</title>
-		<link rel='stylesheet' type='text/css' href='CSS/styles.css'>
-	<head>
-	<body>
-		<canvas id='game_canvas'
-			height='600px'
-			width='800px'
-			></canvas>
-		<script src='JS/game.js'></script>
-		<script>
-			window.onload = function() {
-				game.run();
-			};
-		</script>
-	<body>
+    <head>
+        <meta charset='utf-8'>
+        <title>BR34K 0UT</title>
+        <link rel='stylesheet' type='text/css' href='CSS/styles.css'>
+    <head>
+    <body>
+        <canvas id='game_canvas'
+            height='600px'
+            width='800px'
+            ></canvas>
+        <p> press "pause" - pause/continue game<br>
+            left & right arrow keys to move the paddle<br>
+        </p>
+        <script src='JS/util.js'></script>
+        <script src='JS/constants.js'></script>
+        <script src='JS/game.js'></script>
+        <script>
+            window.onload = function() {
+                game();
+            };
+        </script>
+    <body>
 <html>
 
