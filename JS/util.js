@@ -10,9 +10,9 @@ var util = (function() {
     // VarArgKeysCtor returns variadic object constructor.
     // For example:
     //     var Point = VarArgKeysCtor(['x', 'y', 'z']);
-    //     d1 = new Point(1.4)           // d1 === {x: 1.4}
-    //     d2 = new Point(2.5, 3.6)      // d2 === {x: 2.5, y: 3.6}
-    //     d3 = new Point(3.6, 4.7, 5.8) // d3 === {x: 3.6, y: 4.7, z: 5.8}
+    //     var d1 = new Point(1.4)           // d1 === {x: 1.4}
+    //     var d2 = new Point(2.5, 3.6)      // d2 === {x: 2.5, y: 3.6}
+    //     var d3 = new Point(3.6, 4.7, 5.8) // d3 === {x: 3.6, y: 4.7, z: 5.8}
     function VarArgKeysCtor(obj_keys) {
         return function() {
             const len = Math.min(arguments.length, obj_keys.length);
